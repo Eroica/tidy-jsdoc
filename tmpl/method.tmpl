@@ -17,7 +17,7 @@ var hasMethodSummary = (data.kind !== 'class')
     <article class="method">
 <?js } ?>
 
-<?js if (data.kind !== 'module') { ?>
+<?js if (data.kind !== 'module' && !data.hideconstructor) { ?>
 
     <?js
         var properties = data.properties;
@@ -48,7 +48,7 @@ var hasMethodSummary = (data.kind !== 'class')
     <?js= data.summary ?>
 <?js } ?>
 
-<?js if (data.kind !== 'module' && data.description) { ?>
+<?js if (data.kind !== 'module' && data.description && !data.hideconstructor) { ?>
 <div class="method-description">
     <?js if (hasMethodSummary) { ?><h4 class="method-heading">Description</h4><?js } ?>
     <?js= data.description ?>
@@ -74,7 +74,7 @@ var hasMethodSummary = (data.kind !== 'class')
     <ul><li><?js= this.linkto(data['this'], data['this']) ?></li></ul>
 <?js } ?>
 
-<?js if (data.params && params.length) { ?>
+<?js if (data.params && params.length && !data.hideconstructor) { ?>
     <h4 class="method-heading">Parameters</h4>
     <?js= this.partial('params.tmpl', params) ?>
 <?js } ?>
